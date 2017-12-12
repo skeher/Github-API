@@ -58,6 +58,9 @@ length
 repositories <- fromJSON("https://api.github.com/users/skeher/repos")
 repositories$name #the names of my public repositories
 repositories$created_at #when these repositories were created
+lca <- fromJSON("https://api.github.com/repos/skeher/LCA/commits")
+lca$commit$message #the message i included in each commit to my lca repository
+
 
 #I can look at other user's information too, by just changing the user name in
 #the link above, and specifiying what i want to look at.
@@ -81,4 +84,40 @@ myDataJSon
 
 #################################################################################
 
+#The aspect of the software engineering process i wish to elucidate is the 
+#number of followers that my followers have.  In this way, i will be able to
+#determine which are the most influential developers out of my followers.
+
+followersNames <- fromJSON("https://api.github.com/users/skeher/followers")
+followersNames$login #shown previously, gets the user names of my followers
+
+a <- "https://api.github.com/users/"
+b <- followersNames$login[5]
+b
+c <- "/followers"
+
+test <- sprintf("%s%s%s", a,b,c) #this method amalgamates a, b and c into one string 
+test                              #called test 
+
+
+#I now have the link to yitpin96's followers, contained in a string called test. If I
+#wanted access to fionawolfe's followers link, i woiuld simply change b to
+# b <- followersNames$login[2] as she is second in the list.
+
+numOfFollowers <- c() #this creates an empty vector
+namesOfFollowers <- c()
+for (i in 1:length(followersNames$login)) {
+  followers <- followersNames$login[i] #loops through each of my followers, indexed by i
+  jsonLink <- sprintf("%s%s%s", a, followers, c) #creates link for my ith follower
+  followData <- fromJSON(jsonLink) #stores the followers of my ith follower
+  numOfFollowers[i] = length(followData$login) #amount of followers the ith follower has
+  namesOfFollowers[i] = followers #names of all users following the ith follower
+  
+}
+numOfFollowers
+namesOfFollowers
+finalData <- data.frame(numOfFollowers, namesOfFollowers) #stores two vectors as one
+                                                          #data frame
+finalData$namesOfFollowers
+finalData$numOfFollowers
 
