@@ -121,3 +121,14 @@ finalData <- data.frame(numOfFollowers, namesOfFollowers) #stores two vectors as
 finalData$namesOfFollowers
 finalData$numOfFollowers
 
+require(devtools)
+install_github('rCharts', 'ramnathv')
+library(rCharts)
+
+#The above 3 lines of code give me access to a package with D3.js libraries, allowing
+#me to produce visualizations which will follow.  Find the link here:
+#http://ramnathv.github.io/rCharts/
+
+myPlot <- nPlot(numOfFollowers ~ namesOfFollowers, data = finalData, type = "multiBarChart")
+myPlot
+
