@@ -1,11 +1,28 @@
-#step 1: Have gained access to GitHub information.
+#To run each individual line of code, move the cursor to the first line of code, 
+#and click ctrl+enter.  Allow time for each line to run (wait for the red stop sign in the
+#console to disappear) before running the next line. The cursor will automatically go to the
+#next line when the previous line runs, so just hold ctrl and keeping pressing enter!!
+
+#step 1: You will need to install the packages and activate the libraries below in order to
+#run this code. Please ensure the packages have been checked in the packages tab in the pane
+#on the right hand side of the screen.
+
 
 install.packages("jsonlite")
-library(jsonlite)
 install.packages("httpuv")
-library(httpuv)
 install.packages("httr")
 library(httr)
+library(jsonlite)
+library(httpuv)
+
+require(devtools)
+install_github('rCharts', 'ramnathv')
+library(rCharts)
+
+#The above 3 lines of code give me access to a package with D3.js libraries, allowing
+#me to produce visualizations which will follow.  Find the link here:
+#http://ramnathv.github.io/rCharts/
+
 
 # Can be github, linkedin etc depending on application
 oauth_endpoints("github")
@@ -38,7 +55,9 @@ gitDF[gitDF$full_name == "jtleek/datasharing", "created_at"]
 # https://towardsdatascience.com/accessing-data-from-github-api-using-r-3633fb62cb08
 
 
-#Interrogating the GitHub API.  The information about my github profile is 
+#Step1: Interrogating the GitHub API.  
+
+#The information about my github profile is 
 #stored in a data frame called 'myData'.  I can access different parts of the data 
 #frame using the $ operator, shown below.
 
@@ -88,6 +107,8 @@ myDataJSon
 #number of followers that my followers have.  In this way, i will be able to
 #determine which are the most influential developers out of my followers.
 
+#Step 2: Processing the data from Github
+
 followersNames <- fromJSON("https://api.github.com/users/skeher/followers")
 followersNames$login #shown previously, gets the user names of my followers
 
@@ -103,6 +124,8 @@ test                              #called test
 #I now have the link to yitpin96's followers, contained in a string called test. If I
 #wanted access to fionawolfe's followers link, i woiuld simply change b to
 # b <- followersNames$login[2] as she is second in the list.
+
+#Step 2:
 
 numOfFollowers <- c() #this creates an empty vector
 namesOfFollowers <- c()
@@ -121,14 +144,12 @@ finalData <- data.frame(numOfFollowers, namesOfFollowers) #stores two vectors as
 finalData$namesOfFollowers
 finalData$numOfFollowers
 
-require(devtools)
-install_github('rCharts', 'ramnathv')
-library(rCharts)
-
-#The above 3 lines of code give me access to a package with D3.js libraries, allowing
-#me to produce visualizations which will follow.  Find the link here:
-#http://ramnathv.github.io/rCharts/
+#Step3: Visualize the processed data from Github
 
 myPlot <- nPlot(numOfFollowers ~ namesOfFollowers, data = finalData, type = "multiBarChart")
-myPlot
+myPlot #prints out the D3.JS interactive graph of how many followers my followers have
 
+myPlot$save("myplot.html") #this saves a html file of the plot to documents.  In your file 
+                          #explorer, go to This PC -> Documents -> myplot.html to view it.
+
+#the graph shows that dowlind1 and oboyle-mikey are the most influential developers who follow me
