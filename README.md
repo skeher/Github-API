@@ -3,8 +3,8 @@ Interrogating the Github API using R
 
 The hypothesis: The data I chose to analyse is the number of followers I have, thus finding out who are the most influential developers that follow me.  I believe the amount of GitHub followers a user has is indicitive of the quality of their work.  This is the aspect of the software engineering process which I have elucidated.  
 
-How to run:  Ensure packages are installed and libraries are activated or 'checked' (they will have a tick beside them in the packages pane on the right hand side of the screen).  Run each line of code using CTRL + enter, starting from the top.  Allow time for each line of code to run, especially installing packages and producing plots and graphs. 
-
+How to run:  Ensure packages are installed and libraries are activated or 'checked' (they will have a tick beside them in the packages pane on the right hand side of the screen).  Run each line of code using CTRL + enter, starting from the top.  Allow time for each line of code to run, especially installing packages and producing plots and graphs.  When running the line myapp <- oauth_app(appname = "Sweng_API", key = "80571090559281f968f8", secret = "b2b23b65cac352644d678927406d6971bbe07941") near the start of the code, we may be asked to make a selection about access credentials between R sessions.  Simply type 'Yes' in the console and press enter.  Continue to run the rest of the code as normal
+                      
 Interrogating the GitHub API: This is identified in the comments of the R code.  I made an application to be given permission to access the GitHub database, allowing me to extract data using the fromJson function.  The extracted information is stored as a data frame and specific elements of the data frame can be accessed using the $ operator.
 
 Processing the data: I used a for loop to access the names of my followers, and how many people they were following.  I stored these as two seperate vectors initially but amalgamated these into one dataframe for ease of storage and access.
