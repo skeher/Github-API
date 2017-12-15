@@ -11,13 +11,14 @@
 install.packages("jsonlite")
 install.packages("httpuv")
 install.packages("httr")
-library(httr)
-library(jsonlite)
-library(httpuv)
 
 require(devtools)
 install_github('rCharts', 'ramnathv')
 library(rCharts)
+
+library(httr)
+library(jsonlite)
+library(httpuv)
 
 #The above 3 lines of code give me access to a package with D3.js libraries, allowing
 #me to produce visualizations which will follow.  Find the link here:
