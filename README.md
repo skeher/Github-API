@@ -10,3 +10,5 @@ Interrogating the GitHub API: This is identified in the comments of the R code. 
 Processing the data: I used a for loop to access the names of my followers, and how many people they were following.  I stored these as two seperate vectors initially but amalgamated these into one dataframe for ease of storage and access.
 
 Visualization: I used a package in R called rCharts which supports D3.JS graphs and plots.  I produced a bar chart with follower names on the x axis and number of followers on the y axis.  The final line of code saves the plot as an html file called "myplot.html" in the user's documents folder.  The file should be in your file explorer if this line has been run properly.  However, the myplot.html file which I have uploaded to GitHub may work.  In any case, I have also uploaded two screenshots which demonstrate the interactive graph.  
+
+Conclusion: The chart shows that oboyle-mikey and dowlind1 are the most influential developers that follow me, which 15 followers each.  creavyd is the least influential, with just 2 followers.
