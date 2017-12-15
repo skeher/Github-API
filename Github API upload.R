@@ -153,3 +153,4 @@ myPlot$save("myplot.html") #this saves a html file of the plot to documents.  In
                           #explorer, go to This PC -> Documents -> myplot.html to view it.
 
 #the graph shows that dowlind1 and oboyle-mikey are the most influential developers who follow me
+#creavyd is the least influential developer
